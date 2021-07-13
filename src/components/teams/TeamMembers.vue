@@ -38,6 +38,8 @@ export default {
   created() {
     // this.$route.path // /team
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query);
+    console.log(this.$route.params)
   },
   components: {
     UserItem,
