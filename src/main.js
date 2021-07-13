@@ -13,11 +13,15 @@ const router = createRouter({
     routes: [
         { path: '/', redirect: '/teams' }, // prosty redirect
         {
+            name: 'teams',
             path: '/teams', component: TeamsList, children: [
-                { path: ':teamId', component: TeamMembers, props: true }, // /teams/t1
+                { name: 'team-members', path: ':teamId', component: TeamMembers, props: true }, // /teams/t1
             ]
         }, // our-domain.com/teams => TeamList
-        { path: '/users', component: UsersList },
+        {
+            name: 'users',
+            path: '/users', component: UsersList
+        },
         { path: '/:notFound(.*)', component: PageNotFound },
     ],
     linkActiveClass: 'active'
