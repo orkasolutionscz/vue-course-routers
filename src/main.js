@@ -12,9 +12,12 @@ const router = createRouter({
     history: createWebHistory(),
     routes: [
         { path: '/', redirect: '/teams' }, // prosty redirect
-        { path: '/teams', component: TeamsList }, // our-domain.com/teams => TeamList
+        {
+            path: '/teams', component: TeamsList, children: [
+                { path: ':teamId', component: TeamMembers, props: true }, // /teams/t1
+            ]
+        }, // our-domain.com/teams => TeamList
         { path: '/users', component: UsersList },
-        { path: '/teams/:teamId', component: TeamMembers, props: true },
         { path: '/:notFound(.*)', component: PageNotFound },
     ],
     linkActiveClass: 'active'
