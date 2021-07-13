@@ -5,14 +5,17 @@ import { createRouter, createWebHistory } from 'vue-router';
 import App from './App.vue';
 import TeamsList from './components/teams/TeamsList.vue';
 import UsersList from './components/users/UsersList.vue';
-import TeamMembers from './components/teams/TeamMembers.vue'
+import TeamMembers from './components/teams/TeamMembers.vue';
+import PageNotFound from './components/nav/PageNotFound.vue'
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
-        { path: '/teams', component: TeamsList },
+        { path: '/', redirect: '/teams' }, // prosty redirect
+        { path: '/teams', component: TeamsList }, // our-domain.com/teams => TeamList
         { path: '/users', component: UsersList },
         { path: '/teams/:teamId', component: TeamMembers, props: true },
+        { path: '/:notFound(.*)', component: PageNotFound },
     ],
     linkActiveClass: 'active'
 });
